@@ -1,0 +1,44 @@
+diff --git a/next-env.d.ts b/next-env.d.ts
+index 4f11a03..254b73c 100644
+--- a/next-env.d.ts
++++ b/next-env.d.ts
+@@ -1,5 +1,6 @@
+ /// <reference types="next" />
+ /// <reference types="next/image-types/global" />
++/// <reference path="./.next/types/routes.d.ts" />
+ 
+ // NOTE: This file should not be edited
+-// see https://nextjs.org/docs/basic-features/typescript for more information.
++// see https://nextjs.org/docs/pages/api-reference/config/typescript for more information.
+diff --git a/next-i18next.config.js b/next-i18next.config.js
+index a5174f8..3bc95a5 100644
+--- a/next-i18next.config.js
++++ b/next-i18next.config.js
+@@ -1,10 +1,7 @@
+-const path = require('path');
+-
+ module.exports = {
+   i18n: {
+     defaultLocale: 'en-US',
+     locales: ['en-US', 'de-DE'],
+     localeDetection: false,
+-    localePath: path.resolve('./public/locales'),
+   },
+ };
+diff --git a/src/components/features/settings/settings.tsx b/src/components/features/settings/settings.tsx
+index 8cfbdc9..a25fcca 100644
+--- a/src/components/features/settings/settings.tsx
++++ b/src/components/features/settings/settings.tsx
+@@ -66,7 +66,11 @@ export const Settings = () => {
+       return;
+     }
+ 
+-    if (window.matchMedia(theme.breakpoints.up('md').replace('@media ', '')).matches === true) {
++    const breakpointQuery = theme.breakpoints?.up('md');
++    if (
++      breakpointQuery &&
++      window.matchMedia(breakpointQuery.replace('@media ', '')).matches === true
++    ) {
+       return;
+     }
+ 

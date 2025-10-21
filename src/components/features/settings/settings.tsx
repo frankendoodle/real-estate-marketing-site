@@ -66,7 +66,11 @@ export const Settings = () => {
       return;
     }
 
-    if (window.matchMedia(theme.breakpoints.up('md').replace('@media ', '')).matches === true) {
+    const breakpointQuery = theme.breakpoints?.up('md');
+    if (
+      breakpointQuery &&
+      window.matchMedia(breakpointQuery.replace('@media ', '')).matches === true
+    ) {
       return;
     }
 
