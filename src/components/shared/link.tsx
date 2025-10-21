@@ -111,7 +111,8 @@ export const Link = (props: Props) => {
         size={size}
         startIcon={startIcon}
         endIcon={endIcon}
-        title={title}>
+        title={title}
+      >
         {children}
       </MuiButton>
     ) : (
@@ -123,7 +124,8 @@ export const Link = (props: Props) => {
         target={props.target}
         rel="noopener noreferrer"
         onClick={() => onClick && onClick()}
-        title={title}>
+        title={title}
+      >
         {children}
       </MuiLink>
     );
@@ -131,44 +133,42 @@ export const Link = (props: Props) => {
 
   if (withoutMaterial === true) {
     return (
-      <NextLink href={href} as={as} passHref>
-        <a className={clsx(classes.baseAnchor, className)} title={title}>
-          {children}
-        </a>
+      <NextLink href={href} as={as} className={clsx(classes.baseAnchor, className)} title={title}>
+        {children}
       </NextLink>
     );
   }
 
   if (isButton === true) {
     return (
-      <NextLink href={href} as={as} passHref>
-        <MuiButton
-          href={as}
-          className={className}
-          color={color}
-          onClick={() => onClick && onClick()}
-          variant={variant}
-          size={size}
-          startIcon={startIcon}
-          endIcon={endIcon}
-          title={title}>
-          {children}
-        </MuiButton>
-      </NextLink>
+      <MuiButton
+        href={href}
+        component={NextLink}
+        className={className}
+        color={color}
+        onClick={() => onClick && onClick()}
+        variant={variant}
+        size={size}
+        startIcon={startIcon}
+        endIcon={endIcon}
+        title={title}
+      >
+        {children}
+      </MuiButton>
     );
   }
 
   return (
-    <NextLink href={href} as={as} passHref>
-      <MuiLink
-        href={as}
-        className={className}
-        underline={underlineStyle}
-        color={color}
-        onClick={() => onClick && onClick()}
-        title={title}>
-        {children}
-      </MuiLink>
-    </NextLink>
+    <MuiLink
+      href={href}
+      component={NextLink}
+      className={className}
+      underline={underlineStyle}
+      color={color}
+      onClick={() => onClick && onClick()}
+      title={title}
+    >
+      {children}
+    </MuiLink>
   );
 };
