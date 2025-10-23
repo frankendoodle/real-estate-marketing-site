@@ -1,0 +1,31 @@
+fragment ContactPageFields on ComponentContactPage {
+  __typename
+  sys {
+    id
+  }
+  name
+  slug
+  pageTitle
+  metaDescription
+  heroSection {
+    ...ContactFormFields
+  }
+  helpSection {
+    ...HelpSectionFields
+  }
+  showNavigation
+  showFooter
+}
+
+query CtfContactPage($slug: String!, $locale: String, $preview: Boolean) {
+  componentContactPageCollection(
+    where: { slug: $slug }
+    locale: $locale
+    preview: $preview
+    limit: 1
+  ) {
+    items {
+      ...ContactPageFields
+    }
+  }
+}

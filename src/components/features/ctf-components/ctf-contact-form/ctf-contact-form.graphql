@@ -1,0 +1,21 @@
+fragment ContactFormFields on ComponentContactForm {
+  __typename
+  sys {
+    id
+  }
+  name
+  headline
+  subheadline
+  contactTypeOptions
+  otherContactTypes
+  submitButtonText
+  successMessage
+  privacyPolicyText
+  enableCaptcha
+}
+
+query CtfContactForm($id: String!, $locale: String, $preview: Boolean) {
+  componentContactForm(id: $id, locale: $locale, preview: $preview) {
+    ...ContactFormFields
+  }
+}
